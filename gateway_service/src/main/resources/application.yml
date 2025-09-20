@@ -4,5 +4,7 @@ server:
 spring:
   application:
     name: gateway_service
+  profiles:
+    active: ${PROFILE}
   config:
     import: configserver:${CONFIG_URL}
