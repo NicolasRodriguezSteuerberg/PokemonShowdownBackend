@@ -1,15 +1,32 @@
 services:
-  postgres:
-    container_name: pokemon-postgres
+  pokemon-postgres:
     image: postgres:17
     ports:
       - "5432:5432"
     env_file:
       - .env
-  config_server:
-    container_name: pokemon-config-server
+  pokemon-config-server:
     image: pokemon-config-server:latest
     env_file:
       - .env
     ports:
       - "8888:8888"
+  pokemon-eureka:
+    image: pokemon-eureka:latest
+    env_file:
+      - config.env
+    ports:
+      - "8761:8761"
+    restart: on-failure # ya que va a fallar ya que config server tarda en iniciarse y no puede conseguir la configuracion
+    depends_on:
+      - pokemon-config-server
+  pokemon-gateway:
+    image: pokemon_gateway:latest
+    ports:
+      - "8080:8080"
+    env_file:
+      - config.env
+    restart: on-failure # ya que va a fallar ya que config server tarda en iniciarse y no puede conseguir la configuracion
+    depends_on:
+      - pokemon-config-server
+      - pokemon-eureka
