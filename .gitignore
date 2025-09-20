@@ -57,3 +57,4 @@ spring.log
 *.jks
 .env
 **/.env
+.docker-compose.yml
