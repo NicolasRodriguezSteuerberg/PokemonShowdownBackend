@@ -1,0 +1,15 @@
+services:
+  postgres:
+    container_name: pokemon-postgres
+    image: postgres:17
+    ports:
+      - "5432:5432"
+    env_file:
+      - .env
+  config_server:
+    container_name: pokemon-config-server
+    image: pokemon-config-server:latest
+    env_file:
+      - .env
+    ports:
+      - "8888:8888"
