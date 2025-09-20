@@ -1,0 +1,8 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: pokemon_service
+  config:
+    import: configserver:${CONFIG_URL}
