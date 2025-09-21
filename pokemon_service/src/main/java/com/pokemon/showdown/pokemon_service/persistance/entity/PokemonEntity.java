@@ -19,8 +19,15 @@ import java.util.List;
 public class PokemonEntity {
     @Id
     private Long id;
+    @Column(unique = true)
     private String name;
-    private String description;
+    private Long generation;
+    private Long hp;
+    private Long attack;
+    private Long defense;
+    private Long special_attack;
+    private Long special_defense;
+    private Long speed;
     @OneToMany(
             mappedBy = "pokemon",
             fetch = FetchType.EAGER
