@@ -6,3 +6,5 @@ spring:
     name: pokemon_service
   config:
     import: configserver:${CONFIG_URL}
+  profiles:
+    active: ${PROFILE}
